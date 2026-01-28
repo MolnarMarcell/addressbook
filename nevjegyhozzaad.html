@@ -1,72 +1,36 @@
 <!DOCTYPE html>
 <html lang="hu">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="nevjegyhozzaad.css">
-    <title>Névjegy hozzáadása</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Új névjegy</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="nevjegyhozzaad.css">
 </head>
 <body>
 
-    <div class="iphone">
-        <div class="screen">
+<div class="iphone">
+<div class="screen">
 
-            <div class="statusbar">
-                <span id="ido">9:41</span>
-                <span style="text-shadow: 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black;">📶 🔋</span>
-            </div>
+<header>Új névjegy</header>
 
-            <div class="app">
-                <div class="app-header">
-                    <h1>Új névjegy</h1>
-                </div>
+<input id="lastName" placeholder="Vezetéknév" required>
+<input id="firstName" placeholder="Keresztnév" required>
+<input id="mobile" placeholder="Mobil">
+<input id="home" placeholder="Otthoni telefon">
+<input id="email" placeholder="Email">
+<input id="address" placeholder="Lakcím">
+<input type="date" id="birth">
+<textarea id="note" placeholder="Megjegyzés"></textarea>
 
-                <div class="app-content">
+<div id="groupBoxes"></div>
 
-                    <div class="form-group">
-                        <div class="field">
-                            <label>Név</label>
-                            <input type="text" placeholder="Teljes név">
-                        </div>
+<button onclick="saveContact()">Mentés</button>
+<button onclick="go('index.html')" class="secondary">Mégse</button>
 
-                        <div class="field">
-                            <label>Telefon</label>
-                            <input type="tel" placeholder="+36 30 123 4567">
-                        </div>
+</div>
+</div>
 
-                        <div class="field">
-                            <label>Email</label>
-                            <input type="email" placeholder="email@pelda.hu">
-                        </div>
-
-                        <div class="field">
-                            <label>Cég</label>
-                            <input type="text" placeholder="Cégnév">
-                        </div>
-                    </div>
-
-                    <p><a href="index.html">Vissza a főoldalra</a></p>
-
-                    <button id="ujnevjegy">Névjegy mentése</button>
-
-                </div>
-            </div>
-
-        </div>
-    </div>
-
-    <script>
-    let idoElem = document.getElementById('ido');
-
-        function frissitIdo() {
-        let most = new Date();
-        let ora = most.getHours().toString();
-        let perc = most.getMinutes().toString();
-        idoElem.textContent = `${ora}:${perc}`;
-    }
-    frissitIdo();
-    setInterval(frissitIdo, 60000);
-    </script>
-
+<script src="script.js"></script>
 </body>
 </html>
