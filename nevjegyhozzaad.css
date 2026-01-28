@@ -1,129 +1,64 @@
-* {
-            box-sizing: border-box;
-        }
+@import url("style.css");
 
-        body {
-            margin: 0;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: radial-gradient(circle at top, #663030, #cc3d3d);
-            font-family: -apple-system, BlinkMacSystemFont, "San Francisco", "Segoe UI", sans-serif;
-        }
+/* TARTALOM */
+.app-content {
+    padding: 20px 16px;
+}
 
-        /* TELEFON HÁZ */
-        .iphone {
-            width: 390px;
-            height: 844px;
-            background: #000000;
-            border-radius: 55px;
-            padding: 14px;
-            position: relative;
-            box-shadow:
-                0 0 0 8px #111,
-                0 40px 80px rgba(0,0,0,.8);
-        }
+/* INPUT BLOKK */
+.field {
+    margin-bottom: 18px;
+}
 
-        /* KIJELZŐ */
-        .screen {
-            width: 100%;
-            height: 100%;
-            background: #f2f2f7;
-            border-radius: 40px;
-            overflow: hidden;
-            position: relative;
-        }
+/* LABEL */
+.field label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #8e8e93;
+}
 
-        /* STATUS BAR */
-        .statusbar {
-            height: 44px;
-            padding: 0 20px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            font-size: 14px;
-            font-weight: 600;
-            color: #000;
-        }
+/* INPUT */
+.field input {
+    width: 100%;
+    padding: 14px 14px;
+    border-radius: 14px;
+    border: 1px solid rgba(0,0,0,.08);
+    font-size: 16px;
+    background: #fff;
+    box-shadow:
+        inset 0 1px 2px rgba(0,0,0,.04),
+        0 2px 8px rgba(0,0,0,.04);
+    transition: border-color .15s ease, box-shadow .15s ease;
+}
 
-        /* APP */
-        .app {
-            height: calc(100% - 44px);
-            display: flex;
-            flex-direction: column;
-        }
+/* FÓKUSZ – iOS KÉK */
+.field input:focus {
+    outline: none;
+    border-color: #0a84ff;
+    box-shadow:
+        0 0 0 3px rgba(10,132,255,.25),
+        inset 0 1px 2px rgba(0,0,0,.04);
+}
 
-        /* HEADER */
-        .app-header {
-            height: 56px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(255,255,255,0.85);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(0,0,0,0.08);
-        }
+/* PLACEHOLDER */
+.field input::placeholder {
+    color: #b0b0b5;
+}
 
-        .app-header h1 {
-            font-size: 17px;
-            font-weight: 600;
-            margin: 0;
-        }
+/* VISSZA LINK */
+.back {
+    text-align: center;
+    margin-top: 18px;
+}
 
-        /* TARTALOM */
-        .app-content {
-            flex: 1;
-            padding: 16px;
-            font-size: 15px;
-            color: #333;
-        }
+.back a {
+    color: #0a84ff;
+    font-weight: 600;
+    text-decoration: none;
+}
 
-        /* iOS FORM */
-        .form-group {
-            background: #fff;
-            border-radius: 12px;
-            overflow: hidden;
-            margin-bottom: 20px;
-        }
-
-        .field {
-            display: flex;
-            align-items: center;
-            padding: 14px 16px;
-            border-bottom: 1px solid #e5e5ea;
-        }
-
-        .field:last-child {
-            border-bottom: none;
-        }
-
-        .field label {
-            width: 90px;
-            font-size: 15px;
-            color: #000;
-        }
-
-        .field input {
-            flex: 1;
-            border: none;
-            font-size: 15px;
-            outline: none;
-            background: transparent;
-        }
-
-        /* iOS BUTTON */
-        #ujnevjegy {
-            width: 100%;
-            padding: 14px;
-            font-size: 17px;
-            font-weight: 600;
-            border: none;
-            border-radius: 12px;
-            background: #007aff;
-            color: #fff;
-        }
-
-        #ujnevjegy:active {
-            background: #005fd1;
-        }
+.back a:active {
+    opacity: 0.6;
+}

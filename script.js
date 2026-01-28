@@ -1,90 +1,127 @@
 let contacts = [];
 let groups = [];
 
-function saveToLocalStorage() {
-    localStorage.setItem('contacts', JSON.stringify(contacts));
-    localStorage.setItem('groups', JSON.stringify(groups));
-}
+document.addEventListener("DOMContentLoaded", () => {
+    contacts = JSON.parse(localStorage.getItem("contacts")) || [];
+    groups   = JSON.parse(localStorage.getItem("groups")) || [];
 
-function loadFromLocalStorage() {
-    const contactsData = localStorage.getItem('contacts');
-    const groupsData = localStorage.getItem('groups');
-    if (contactsData) {
-        contacts = JSON.parse(contactsData);
-    }
-    if (groupsData) {
-        groups = JSON.parse(groupsData);
-    }
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-    loadFromLocalStorage();
     renderContacts();
     renderGroups();
+    renderGroupCheckboxes();
 });
 
-function addContact(contact) {
-    contacts.push(contact);
-    saveToLocalStorage();
-    renderContacts();
+function save() {
+    localStorage.setItem("contacts", JSON.stringify(contacts));
+    localStorage.setItem("groups", JSON.stringify(groups));
 }
 
-function renderContacts(filteredContacts = contacts) {
-  const list = document.getElementById("contactList");
-  list.innerHTML = "";
+function go(page) {
+    window.location.href = page;
+}
 
-  filteredContacts.forEach(contact => {
-    const li = document.createElement("li");
-    li.textContent = `${contact.lastName} ${contact.firstName}`;
-    li.addEventListener("click", () => showContactDetails(contact.id));
-    list.appendChild(li);
-  });
-}
-function showContactDetails(id) {
-  const contact = contacts.find(c => c.id === id);
-  if (!contact) return;
+/* ===== NÉVJEGYEK ===== */
+function renderContacts() {
+    const list = document.getElementById("contactList");
+    if (!list) return;
 
-  document.getElementById("details").innerHTML = `
-    <h3>${contact.lastName} ${contact.firstName}</h3>
-    <p>Mobil: ${contact.phone.mobile}</p>
-    <p>Email: ${contact.email}</p>
-    <p>Csoportok: ${contact.groups.join(", ") || "nincs"}</p>
-  `;
-}
-function deleteContact(id) {
-  contacts = contacts.filter(c => c.id !== id);
-  saveToLocalStorage();
-  renderContacts();
-  document.getElementById("details").innerHTML = "<p>Válassz egy kontaktot a részletekhez.</p>";
-}
-function addGroup(name, description = "") {
-  const newGroup = {
-    id: crypto.randomUUID(),
-    name,
-    description
-  };
-  groups.push(newGroup);
-  saveToLocalStorage();
-  renderGroups();
-}
-function renderGroups() {
-  const list = document.getElementById("groupList");
-  list.innerHTML = "";
-    groups.forEach(group => {
-        const div = document.createElement("div");
-        div.textContent = group.name;
-        list.appendChild(div);
+    list.innerHTML = "";
+
+    if (contacts.length === 0) {
+        list.innerHTML = "<li style='text-align:center;color:#888'>Nincs még névjegy</li>";
+        return;
+    }
+
+    contacts.forEach(c => {
+        const li = document.createElement("li");
+        li.textContent = `${c.lastName} ${c.firstName}`;
+        li.onclick = () => showDetails(c.id);
+        list.appendChild(li);
     });
 }
-function filterContactsByGroup(groupName) {
-  if (groupName === "all") {
-    renderContacts();
-  } else {
-    const filtered = contacts.filter(contact => contact.groups.includes(groupName));
-    renderContacts(filtered);
-  }
+
+function showDetails(id) {
+    const c = contacts.find(x => x.id === id);
+    const d = document.getElementById("details");
+    if (!c || !d) return;
+
+    d.innerHTML = `
+        <h3>${c.lastName} ${c.firstName}</h3>
+        <p>📱 ${c.mobile || "-"}</p>
+        <p>🏠 ${c.home || "-"}</p>
+        <p>✉️ ${c.email || "-"}</p>
+        <p>🎂 ${c.birth || "-"}</p>
+        <p>📍 ${c.address || "-"}</p>
+        <p>${c.note || ""}</p>
+        <button onclick="deleteContact('${c.id}')">Törlés</button>
+    `;
 }
-function showUngroupedContacts() {
-  const ungrouped = contacts.filter(contact => contact.groups.length === 0);
-  renderContacts(ungrouped);
+
+function deleteContact(id) {
+    contacts = contacts.filter(c => c.id !== id);
+    save();
+    renderContacts();
+    document.getElementById("details").innerHTML = "";
+}
+
+function saveContact() {
+    contacts.push({
+        id: crypto.randomUUID(),
+        lastName: lastName.value,
+        firstName: firstName.value,
+        mobile: mobile.value,
+        home: home.value,
+        email: email.value,
+        address: address.value,
+        birth: birth.value,
+        note: note.value,
+        groups: [...document.querySelectorAll(".group:checked")].map(g => g.value)
+    });
+
+    save();
+    go("index.html");
+}
+
+/* ===== CSOPORTOK ===== */
+function addGroup() {
+    if (!groupName.value.trim()) return;
+
+    groups.push({
+        id: crypto.randomUUID(),
+        name: groupName.value
+    });
+
+    save();
+    renderGroups();
+}
+
+function renderGroups() {
+    const list = document.getElementById("groupList");
+    if (!list) return;
+
+    list.innerHTML = "";
+    groups.forEach(g => {
+        const li = document.createElement("li");
+        li.textContent = g.name;
+        li.onclick = () => {
+            groups = groups.filter(x => x.id !== g.id);
+            save();
+            renderGroups();
+        };
+        list.appendChild(li);
+    });
+}
+
+function renderGroupCheckboxes() {
+    const box = document.getElementById("groupBoxes");
+    if (!box) return;
+
+    box.innerHTML = "";
+    groups.forEach(g => {
+        box.innerHTML += `
+            <label class="group-box">
+                <input type="checkbox" class="group" value="${g.name}">
+                ${g.name}
+            </label>
+        `;
+    });
 }

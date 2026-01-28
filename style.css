@@ -5,85 +5,102 @@
 body {
     margin: 0;
     height: 100vh;
+    background: linear-gradient(180deg, #1c1c1e, #000);
     display: flex;
-    align-items: center;
     justify-content: center;
-    background: radial-gradient(circle at top, #663030, #cc3d3d);
-    font-family: -apple-system, BlinkMacSystemFont, "San Francisco", "Segoe UI", sans-serif;
+    align-items: center;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
 }
 
+/* iPhone keret */
 .iphone {
     width: 390px;
     height: 844px;
-    background: #000000;
-    border-radius: 55px;
+    background: #000;
+    border-radius: 54px;
     padding: 14px;
-    position: relative;
-    box-shadow:
-        0 0 0 8px #111,
-        0 40px 80px rgba(0,0,0,.8);
+    box-shadow: 0 40px 100px rgba(0,0,0,.9);
 }
 
 .screen {
-    width: 100%;
     height: 100%;
     background: #f2f2f7;
-    border-radius: 40px;
-    overflow: hidden;
-    position: relative;
+    border-radius: 42px;
+    overflow-y: auto;
 }
 
-.statusbar {
-    height: 44px;
-    padding: 0 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font-size: 14px;
-    font-weight: 600;
-    color: #000;
-}
-
-
-.app {
-    height: calc(100% - 44px);
-    display: flex;
-    flex-direction: column;
-}
-
-.app-header {
+/* Header */
+header {
     height: 56px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(255,255,255,0.85);
-    backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(0,0,0,0.08);
+    font-weight: 600;
+    font-size: 17px;
+    background: rgba(255,255,255,.85);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(0,0,0,.1);
 }
 
-.app-header h1 {
-    font-size: 17px;
+/* Gombok */
+button {
+    width: calc(100% - 32px);
+    margin: 10px 16px;
+    padding: 14px;
+    border: none;
+    border-radius: 16px;
+    background: #0a84ff;
+    color: #fff;
+    font-size: 16px;
     font-weight: 600;
+}
+
+button.secondary {
+    background: #e5e5ea;
+    color: #000;
+}
+
+/* Lista */
+ul {
+    list-style: none;
+    padding: 12px;
     margin: 0;
 }
 
-.app-content {
-    flex: 1;
-    padding: 16px;
-    font-size: 15px;
-    color: #333;
-}
-
-#ujnevjegy {
-    margin-top: 20px;
-    padding: 10px 15px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-}
-
-#ujnevjegy:hover {
-    border-color: #999;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+li {
+    background: #fff;
+    padding: 14px 16px;
+    margin-bottom: 10px;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0,0,0,.08);
     cursor: pointer;
+}
+
+/* Részletek */
+#details {
+    margin: 12px 16px;
+    padding: 16px;
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 6px 18px rgba(0,0,0,.08);
+}
+
+/* Űrlap */
+input, textarea {
+    width: calc(100% - 32px);
+    margin: 8px 16px;
+    padding: 14px;
+    border-radius: 14px;
+    border: 1px solid #d1d1d6;
+    font-size: 15px;
+}
+
+textarea {
+    resize: none;
+    height: 80px;
+}
+
+/* Checkbox */
+.group-box {
+    margin: 10px 16px;
 }

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Névjegyzék</title>
+<title>Csoportok</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -11,13 +11,14 @@
 <div class="iphone">
 <div class="screen">
 
-<header>Névjegyzék</header>
+<header>Csoportok</header>
 
-<button onclick="go('nevjegyhozzaad.html')">➕ Új névjegy</button>
-<button onclick="go('csoportok.html')" class="secondary">📂 Csoportok</button>
+<input id="groupName" placeholder="Csoport neve">
+<button onclick="addGroup()">Hozzáadás</button>
 
-<ul id="contactList"></ul>
-<div id="details"></div>
+<ul id="groupList"></ul>
+
+<button onclick="go('index.html')" class="secondary">Vissza</button>
 
 </div>
 </div>
