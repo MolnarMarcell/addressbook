@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="nevjegyhozzaad.css">
+    <title>Névjegy hozzáadása</title>
+</head>
+<body>
+
+    <div class="iphone">
+        <div class="screen">
+
+            <div class="statusbar">
+                <span id="ido">9:41</span>
+                <span style="text-shadow: 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black;">📶 🔋</span>
+            </div>
+
+            <div class="app">
+                <div class="app-header">
+                    <h1>Új névjegy</h1>
+                </div>
+
+                <div class="app-content">
+
+                    <div class="form-group">
+                        <div class="field">
+                            <label>Név</label>
+                            <input type="text" placeholder="Teljes név">
+                        </div>
+
+                        <div class="field">
+                            <label>Telefon</label>
+                            <input type="tel" placeholder="+36 30 123 4567">
+                        </div>
+
+                        <div class="field">
+                            <label>Email</label>
+                            <input type="email" placeholder="email@pelda.hu">
+                        </div>
+
+                        <div class="field">
+                            <label>Cég</label>
+                            <input type="text" placeholder="Cégnév">
+                        </div>
+                    </div>
+
+                    <p><a href="index.html">Vissza a főoldalra</a></p>
+
+                    <button id="ujnevjegy">Névjegy mentése</button>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+    let idoElem = document.getElementById('ido');
+
+        function frissitIdo() {
+        let most = new Date();
+        let ora = most.getHours().toString();
+        let perc = most.getMinutes().toString();
+        idoElem.textContent = `${ora}:${perc}`;
+    }
+    frissitIdo();
+    setInterval(frissitIdo, 60000);
+    </script>
+
+</body>
+</html>

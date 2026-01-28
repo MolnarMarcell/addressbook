@@ -1,13 +1,53 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hu">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Document</title>
+    <title>Address Book</title>
 </head>
 <body>
-    
-    <script src="script.js"></script>
+
+<div class="iphone">
+    <div class="screen">
+        <div class="statusbar">
+            <span id="ido">9:41</span>
+            <span style="text-shadow: 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black;">📶 🔋</span>
+        </div>
+
+        <div class="app">
+            <div class="app-header">
+                <h1>Névjegyzék</h1>
+            </div>
+
+            <button id="ujnevjegy" onclick="ujlapmegnyit()">
+                Új névjegy
+            </button>
+
+            <div class="app-content">
+                <!-- ide jön majd a tartalom -->
+                <p>Névjegyek listája…</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    let idoElem = document.getElementById('ido');
+    function frissitIdo() {
+        let most = new Date();
+        let ora = most.getHours().toString();
+        let perc = most.getMinutes().toString();
+        idoElem.textContent = `${ora}:${perc}`;
+    }
+    frissitIdo();
+    setInterval(frissitIdo, 60000);
+
+    function ujlapmegnyit() {
+        window.location.href = 'nevjegyhozzaad.html';
+    }
+
+</script>
+
 </body>
 </html>
